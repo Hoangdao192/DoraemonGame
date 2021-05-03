@@ -63,8 +63,15 @@ void mainGame()
     rock.setColisionBox(0, 72, 52, 32);
     rock.setPosition(30, 100);
 
+    BaseObject rock2;
+    rock2.loadAnimationFromFile("acces/rock2.png");
+    rock2.setAnimation(1, 1, 52, 132);
+    rock2.setColisionBox(0, 100, 52, 32);
+    rock2.setPosition(100, 100);
 
     game.object_list.addObject(&rock);
+    game.object_list.addObject(&rock2);
+
     while (game.isRunning())
     {
         game.update();
@@ -87,6 +94,7 @@ void mainGame()
 
         player.render();
         rock.render();
+        rock2.render();
         
 
         game.draw();
