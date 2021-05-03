@@ -20,7 +20,7 @@ class BaseObject
 		void setPosition(int x, int y);
 		int getPositionX() { return x_pos; }
 		int getPositionY() { return y_pos; }
-		void show();
+		void render();
 
 		void destroyObject() { visible = false; }
 		

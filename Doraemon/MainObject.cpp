@@ -337,7 +337,7 @@ bool MainObject::checkTileColision(Tile &tile)
 	return false;
 }
 
-void MainObject::show()
+void MainObject::render()
 {
 	SDL_Rect render_clip = main_animation->getCurrentRect();
 	main_img->setRenderRect(x_pos, y_pos, MAIN_FRAME_WIDTH, MAIN_FRAME_HEIGHT);

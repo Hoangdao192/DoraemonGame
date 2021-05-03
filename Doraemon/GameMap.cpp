@@ -256,7 +256,7 @@ void GameMap::loadTileColision()
 	TILE_COLISION[234] = { 0,0,64,64 };
 }
 
-void GameMap::drawMap()
+void GameMap::render()
 {
 	bool first = false;
 	for (int i = start_y; i <= max_y; ++i)

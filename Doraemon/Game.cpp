@@ -76,12 +76,12 @@ void mainGame()
         map1.cameraMove(0, 0);
         map1s.cameraMove(0, 0);
 
-        map1.drawMap();
-        map1s.drawMap();
-        map2.drawMap();
+        map1.render();
+        map1s.render();
+        map2.render();
 
-        player.show();
-        rock.show();
+        player.render();
+        rock.render();
         
 
         game.draw();

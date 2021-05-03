@@ -34,7 +34,7 @@ class MainObject : public BaseObject
 		void handleInputAction(SDL_Event &window_event);
 
 		void checkAnimation();
-		virtual void show();
+		virtual void render();
 
 
 

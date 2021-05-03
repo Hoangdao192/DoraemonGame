@@ -38,7 +38,7 @@ class GameMap
 		void loadMap(std::string path);
 		Tile getTile(int x, int y);
 
-		void drawMap();
+		void render();
 
 		bool setCameraPosition(const int x1, const int y1, const int x2, const int y2);
 		bool cameraMove(int x_val, int y_val);

@@ -47,7 +47,7 @@ void BaseObject::setColisionBox(const int x, const int y, const int w, const int
 	colision_box.h = h;
 }
 
-void BaseObject::show()
+void BaseObject::render()
 {
 	if (!visible) return;
 	Camera map_camera = GameMap::getMapCamera();
