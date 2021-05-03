@@ -94,6 +94,21 @@ void DrawQueue::deleteNode(const int node, const int layer)
 	queue[layer].erase(queue[layer].begin() + node);
 }
 
+void DrawQueue::insertLayer(std::vector<DrawNode> layer, const int position)
+{
+	if (position < 0)
+	{
+		queue.insert(queue.begin(), layer);
+		return;
+	}
+	if (position >= queue.size())
+	{
+		queue.push_back(layer);
+		return;
+	}
+	queue.insert(queue.begin() + position, layer);
+}
+
 int DrawQueue::getLayerSize(const int layer)
 {
 	if (layer >= queue.size())

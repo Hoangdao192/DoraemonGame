@@ -29,6 +29,10 @@ class DrawQueue
 		void deleteLayer(const int layer = -1);
 		//	Xóa một đối tượng khỏi một layer
 		void deleteNode(const int node, const int layer);
+		//	Chèn một layer vào vị trí đã định
+		//	Nếu position lớn hơn vị trí lớn nhất -> chèn vào cuối
+		//	Nếu position nhỏ hơn vị trí nhỏ nhất -> chèn vào đầu
+		void insertLayer(std::vector<DrawNode> layer, const int position);
 
 		int getQueueSize() const { return queue.size(); }
 		int getLayerSize(const int layer);
