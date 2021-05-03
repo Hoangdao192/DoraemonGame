@@ -164,6 +164,7 @@
     <ClCompile Include="ImageObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainAcces.cpp" />
+    <ClCompile Include="MainFunction.cpp" />
     <ClCompile Include="MainObject.cpp" />
     <ClCompile Include="ObjectList.cpp" />
     <ClCompile Include="Window.cpp" />

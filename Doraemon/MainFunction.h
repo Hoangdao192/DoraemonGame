@@ -9,3 +9,5 @@
 #include <string>
 
 #include "Window.h"
+
+void writeLog(std::string log);

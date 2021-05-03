@@ -5,6 +5,8 @@ BaseObject::BaseObject()
 {
 	x_pos = 0;
 	y_pos = 0;
+	x_val = 0;
+	y_val = 0;
 	width = 0;
 	height = 0;
 	map_x_pos = 0;
@@ -70,7 +72,7 @@ void BaseObject::render()
 	//image.render(&clip);
 }
 
-bool BaseObject::checkColision(BaseObject& other_object)
+bool BaseObject::checkObjectColision(BaseObject& other_object)
 {
 	/////////////////////////////////////////
 	//	Kiểm tra va chạm với đối tượng khác
@@ -80,10 +82,10 @@ bool BaseObject::checkColision(BaseObject& other_object)
 	SDL_Rect this_obj = colision_box;
 	SDL_Rect other_obj = other_object.getColisionBox();
 	//	Tính toán tọa độ trên map của hộp va chạm
-	this_obj.x += x_pos;
-	this_obj.y += y_pos;
-	other_obj.x += other_object.getPositionX();
-	other_obj.y += other_object.getPositionY();
+	this_obj.x += map_x_pos +x_val;
+	this_obj.y += map_y_pos +y_val;
+	other_obj.x += other_object.getMapPositionX();
+	other_obj.y += other_object.getMapPositionY();
 
 	//	Va chạm phải dưới
 	if (this_obj.x <= other_obj.x && other_obj.x <= this_obj.x + this_obj.w

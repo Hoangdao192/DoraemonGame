@@ -7,6 +7,7 @@
 #include "BaseObject.h"
 #include "MainAcces.h"
 #include "DrawQueue.h"
+#include "ObjectList.h"
 
 class Game
 {
@@ -26,6 +27,7 @@ class Game
 		bool isRunning() const { return running; }
 
 		static DrawQueue draw_queue;
+		static ObjectList object_list;
 
 		SDL_Event window_event;
 	private:

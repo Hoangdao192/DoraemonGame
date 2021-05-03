@@ -26,6 +26,8 @@ class MainObject : public BaseObject
 		~MainObject();
 		void loadAnimation();
 
+		bool checkColision(GameMap& map_data);
+		bool checkObjectListColision();
 		bool checkMapColision(GameMap& map_data);
 		bool checkTileColision(Tile &tile);
 
@@ -39,8 +41,6 @@ class MainObject : public BaseObject
 
 
 	private:
-		int x_val;
-		int y_val;
 
 		ImageObject* main_img;
 		FrameSheet* main_animation;

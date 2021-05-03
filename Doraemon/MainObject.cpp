@@ -136,7 +136,7 @@ void MainObject::move(GameMap &map_data)
 	}
 
 	//	Nếu nhân vật va phải các chướng ngại vật trên bản đồ thì không thể đi tiếp
-	if (checkMapColision(map_data))
+	if (checkColision(map_data))
 	{
 		//main_speed = 1;
 		return;
@@ -184,7 +184,7 @@ void MainObject::doThing(GameMap& map_data)
 		|| movement.left && x_pos < Window::getWindowWidth() / 2)
 	{
 		//	Nếu xảy ra va chạm thì bản đồ không di chuyển
-		if (checkMapColision(map_data))
+		if (checkColision(map_data))
 		{
 			return;
 		}
@@ -197,7 +197,7 @@ void MainObject::doThing(GameMap& map_data)
 		|| movement.up && y_pos < Window::getWindowHeight() / 2)
 	{
 		//	Nếu xảy ra va chạm thì bản đồ không di chuyển
-		if (checkMapColision(map_data))
+		if (checkColision(map_data))
 		{
 			return;
 		}
@@ -238,6 +238,14 @@ void MainObject::checkAnimation()
 		main_animation = &stand_animation;
 		main_img = &stand_img;
 	}
+}
+
+bool MainObject::checkColision(GameMap &map_data)
+{
+	if (checkMapColision(map_data)) return true;
+	if (checkObjectListColision()) return true;
+
+	return false;
 }
 
 bool MainObject::checkMapColision(GameMap& map_data)
@@ -308,7 +316,6 @@ bool MainObject::checkTileColision(Tile &tile)
 	if (this_obj.x <= other_obj.x && other_obj.x <= this_obj.x + this_obj.w - 1
 		&& this_obj.y <= other_obj.y && other_obj.y <= this_obj.y + this_obj.h -1)
 	{
-		std::cout << "RIGHT DOWN" << std::endl;
 		return true;
 	}
 
@@ -330,10 +337,18 @@ bool MainObject::checkTileColision(Tile &tile)
 	if (this_obj.x <= other_obj.x && other_obj.x <= this_obj.x + this_obj.w - 1
 		&& other_obj.y <= this_obj.y && this_obj.y <= other_obj.y + other_obj.h - 1)
 	{
-		std::cout << "RIGHT UP" << std::endl;
 		return true;
 	}
 
+	return false;
+}
+
+bool MainObject::checkObjectListColision()
+{
+	for (int i = 0; i < Game::object_list.object_list.size(); ++i)
+	{
+		if (checkObjectColision(*Game::object_list.object_list[i])) return true;
+	}
 	return false;
 }
 

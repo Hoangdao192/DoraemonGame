@@ -7,7 +7,7 @@ DrawQueue::DrawQueue()
 
 DrawQueue::~DrawQueue()
 {
-
+	eraseQueue();
 }
 
 void DrawQueue::addToQueue(SDL_Texture* texture_pointer, SDL_Rect rect_, const int layer, SDL_Rect clip_)

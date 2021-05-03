@@ -1,16 +1,19 @@
 #include "Game.h"
 
 DrawQueue Game::draw_queue;
+ObjectList Game::object_list;
 
 Game::Game()
 {
     running = true;
 	game_start_time = SDL_GetTicks();
+    object_list.clearList();
 }
 
 Game::~Game()
 {
-
+    draw_queue.~DrawQueue();
+    object_list.~ObjectList();
 }
 
 void Game::update()
@@ -57,9 +60,11 @@ void mainGame()
     BaseObject rock;
     rock.loadAnimationFromFile("acces/rock3.png");
     rock.setAnimation(1, 1, 52, 104);
-
+    rock.setColisionBox(0, 72, 52, 32);
     rock.setPosition(30, 100);
 
+
+    game.object_list.addObject(&rock);
     while (game.isRunning())
     {
         game.update();
@@ -71,8 +76,8 @@ void mainGame()
                 player.handleInputAction(game.window_event);
 
         }
+
         player.doThing(map2);
-        //player.doThing(map2);
         map1.cameraMove(0, 0);
         map1s.cameraMove(0, 0);
 
@@ -85,5 +90,6 @@ void mainGame()
         
 
         game.draw();
+        
     }
 }
