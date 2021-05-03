@@ -152,6 +152,7 @@
     <ClInclude Include="MainFunction.h" />
     <ClInclude Include="ImageObject.h" />
     <ClInclude Include="MainObject.h" />
+    <ClInclude Include="ObjectList.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainAcces.cpp" />
     <ClCompile Include="MainObject.cpp" />
+    <ClCompile Include="ObjectList.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
