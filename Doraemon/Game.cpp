@@ -103,7 +103,32 @@ void mainGame()
     rock_column3.loadAnimationFromFile("acces/rock_column.png");
     rock_column3.setAnimation(1, 1, 64, 154);
     rock_column3.setColisionBox(0, 100, 64, 54);
-    rock_column3.setPosition(1060, 326);
+    rock_column3.setPosition(521, 326);
+
+    BaseObject rock_well;
+    rock_well.loadAnimationFromFile("acces/break_rock_well.png");
+    rock_well.setAnimation(1, 1, 110, 98);
+    rock_well.setColisionBox(0, 0, 110, 98);
+    rock_well.setPosition(-23, 286);
+
+    BaseObject break_rock_col;
+    break_rock_col.loadAnimationFromFile("acces/break_rock_column.png");
+    break_rock_col.setAnimation(1, 1, 64, 114);
+    break_rock_col.setColisionBox(0, 60, 64, 54);
+    break_rock_col.setPosition(717, 366);
+
+    BaseObject rock_bench;
+    rock_bench.loadAnimationFromFile("acces/gheda1.png");
+    rock_bench.setAnimation(1, 1, 112, 82);
+    rock_bench.setColisionBox(0, 38, 112, 44);
+    rock_bench.setPosition(264, 587);
+
+
+    BaseObject rock_bench1;
+    rock_bench1.loadAnimationFromFile("acces/gheda1.png");
+    rock_bench1.setAnimation(1, 1, 112, 82);
+    rock_bench1.setColisionBox(0, 38, 112, 44);
+    rock_bench1.setPosition(456, 587);
 
     game.object_list.addObject(&rock);
     game.object_list.addObject(&rock2);
@@ -112,6 +137,11 @@ void mainGame()
     game.object_list.addObject(&rock_benches);
     game.object_list.addObject(&rock_column1);
     game.object_list.addObject(&rock_column2);
+    game.object_list.addObject(&rock_column3);
+    game.object_list.addObject(&break_rock_col);
+    game.object_list.addObject(&rock_well);
+    game.object_list.addObject(&rock_bench);
+    game.object_list.addObject(&rock_bench1);
 
     while (game.isRunning())
     {
@@ -141,6 +171,11 @@ void mainGame()
         rock_benches.render(3);
         rock_column1.render(3);
         rock_column2.render(3);
+        rock_column3.render(3);
+        rock_well.render(3);
+        break_rock_col.render(3);
+        rock_bench.render(3);
+        rock_bench1.render(3);
         
 
         game.draw();
