@@ -61,16 +61,57 @@ void mainGame()
     rock.loadAnimationFromFile("acces/rock3.png");
     rock.setAnimation(1, 1, 52, 104);
     rock.setColisionBox(0, 72, 52, 32);
-    rock.setPosition(30, 100);
+    rock.setPosition(70, 88);
 
     BaseObject rock2;
     rock2.loadAnimationFromFile("acces/rock2.png");
     rock2.setAnimation(1, 1, 52, 132);
     rock2.setColisionBox(0, 100, 52, 32);
-    rock2.setPosition(100, 100);
+    rock2.setPosition(198, -4);
+
+    BaseObject rock3;
+    rock3.loadAnimationFromFile("acces/rock1.png");
+    rock3.setAnimation(1, 1, 52, 76);
+    rock3.setColisionBox(0, 46, 52, 30);
+    rock3.setPosition(198, 245);
+
+    BaseObject chest1;
+    chest1.loadAnimationFromFile("acces/chest.png");
+    chest1.setAnimation(1, 1, 64, 62);
+    chest1.setColisionBox(0, 37, 64, 25);
+    chest1.setPosition(544, 109);
+
+    BaseObject rock_benches;
+    rock_benches.loadAnimationFromFile("acces/gheda2.png");
+    rock_benches.setAnimation(1, 1, 54, 122);
+    rock_benches.setColisionBox(0, 22, 54, 100);
+    rock_benches.setPosition(842, -12);
+
+    BaseObject rock_column1;
+    rock_column1.loadAnimationFromFile("acces/rock_column.png");
+    rock_column1.setAnimation(1, 1, 64, 154);
+    rock_column1.setColisionBox(0, 100, 64, 54);
+    rock_column1.setPosition(1060, 62);
+
+    BaseObject rock_column2;
+    rock_column2.loadAnimationFromFile("acces/rock_column.png");
+    rock_column2.setAnimation(1, 1, 64, 154);
+    rock_column2.setColisionBox(0, 100, 64, 54);
+    rock_column2.setPosition(1060, 326);
+
+    BaseObject rock_column3;
+    rock_column3.loadAnimationFromFile("acces/rock_column.png");
+    rock_column3.setAnimation(1, 1, 64, 154);
+    rock_column3.setColisionBox(0, 100, 64, 54);
+    rock_column3.setPosition(1060, 326);
 
     game.object_list.addObject(&rock);
     game.object_list.addObject(&rock2);
+    game.object_list.addObject(&rock3);
+    game.object_list.addObject(&chest1);
+    game.object_list.addObject(&rock_benches);
+    game.object_list.addObject(&rock_column1);
+    game.object_list.addObject(&rock_column2);
 
     while (game.isRunning())
     {
@@ -88,16 +129,20 @@ void mainGame()
         map1.cameraMove(0, 0);
         map1s.cameraMove(0, 0);
 
-        map1.render();
-        map1s.render();
-        map2.render();
+        map1.render(0);
+        map1s.render(1);
+        map2.render(2);
 
-        player.render();
-        rock.render();
-        rock2.render();
+        player.render(3);
+        rock.render(3);
+        rock2.render(3);
+        rock3.render(3);
+        chest1.render(3);
+        rock_benches.render(3);
+        rock_column1.render(3);
+        rock_column2.render(3);
         
 
         game.draw();
-        
     }
 }

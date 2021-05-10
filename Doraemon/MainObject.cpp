@@ -352,12 +352,12 @@ bool MainObject::checkObjectListColision()
 	return false;
 }
 
-void MainObject::render()
+void MainObject::render(int layer)
 {
 	SDL_Rect render_clip = main_animation->getCurrentRect();
 	main_img->setRenderRect(x_pos, y_pos, MAIN_FRAME_WIDTH, MAIN_FRAME_HEIGHT);
 
-	Game::draw_queue.addToQueue(main_img->getTexture(), main_img->getRenderRect(), -1, render_clip);
+	Game::draw_queue.addToQueue(main_img->getTexture(), main_img->getRenderRect(), layer, render_clip);
 
 	//main_img->render(&render_clip);
 	/*

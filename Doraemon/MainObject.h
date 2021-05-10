@@ -36,7 +36,7 @@ class MainObject : public BaseObject
 		void handleInputAction(SDL_Event &window_event);
 
 		void checkAnimation();
-		virtual void render();
+		virtual void render(int layer = 0);
 
 
 

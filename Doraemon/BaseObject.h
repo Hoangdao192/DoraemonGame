@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "MainFunction.h"
 #include "ImageObject.h"
 #include "FrameSheet.h"
@@ -10,6 +10,8 @@ class BaseObject
 		BaseObject();
 		~BaseObject();
 
+		//x và y là tọa độ so với ảnh nhân vật
+		void loadShadow(std::string path, int x = 0, int y = 0);
 		void loadAnimationFromFile(std::string path);
 		void setAnimation(const int frame_row, const int frame_col, const int frame_width, const int frame_height);
 
@@ -22,12 +24,14 @@ class BaseObject
 		int getPositionY() { return y_pos; }
 		int getMapPositionX() { return map_x_pos; }
 		int getMapPositionY() { return map_y_pos; }
-		void render();
+		void render(int layer = 0);
 
 		void destroyObject() { visible = false; }
 		
 	protected:
 		ImageObject image;
+		bool have_shadow;
+		ImageObject shadow;
 		FrameSheet animation;
 
 		bool visible;
@@ -36,6 +40,10 @@ class BaseObject
 
 		int x_pos;
 		int y_pos;
+
+		int shadow_x;
+		int shadow_y;
+
 		int x_val;
 		int y_val;
 		int speed;

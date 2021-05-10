@@ -2,7 +2,7 @@
 
 DrawQueue::DrawQueue()
 {
-
+	queue.resize(10);
 }
 
 DrawQueue::~DrawQueue()
@@ -157,10 +157,5 @@ void DrawQueue::eraseQueue()
 		{
 			queue[i].pop_back();
 		}
-	}
-
-	while (queue.size() > 0 )
-	{
-		queue.pop_back();
 	}
 }

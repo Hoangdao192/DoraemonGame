@@ -2,6 +2,10 @@
 #include "MainFunction.h"
 #include "Window.h"
 
+/// <summary>
+/// Hàng đợi sẽ khởi tạo với 10 layer
+/// </summary>
+
 struct DrawNode
 {
 	DrawNode(SDL_Texture* texture_pointer, SDL_Rect rect_, SDL_Rect clip_ = { 0,0,0,0 })
@@ -45,6 +49,5 @@ class DrawQueue
 
 	private:
 		std::vector<std::vector<DrawNode>> queue;
-		//	Sắp xếp thứ tự hiển thị trước sau trong một layer
 };
 

@@ -256,9 +256,8 @@ void GameMap::loadTileColision()
 	TILE_COLISION[234] = { 0,0,64,64 };
 }
 
-void GameMap::render()
+void GameMap::render(int layer)
 {
-	bool first = false;
 	for (int i = start_y; i <= max_y; ++i)
 	{
 		for (int j = start_x; j <= max_x; ++j)
@@ -268,25 +267,7 @@ void GameMap::render()
 			SDL_Rect tile_rect = map[i][j].render_rect;
 			tile[type].setRenderRect(tile_rect.x - render_x, tile_rect.y - render_y, tile_rect.w, tile_rect.h);
 
-			/*SDL_Rect colision_box = map[i][j].colision_box;
-			colision_box.x = colision_box.x + tile_rect.x - render_x;
-			colision_box.y = colision_box.y + tile_rect.y - render_y;
-
-			SDL_SetRenderDrawColor(Window::renderer, 80, 80, 80, 0);
-			if (colision_box.w != 0)
-				SDL_RenderDrawRect(Window::renderer, &colision_box);
-			SDL_SetRenderDrawColor(Window::renderer, 255, 255, 255, 0);*/
-
-			//SDL_Rect render = tile[type].getRenderRect();
-			if (first == false)
-			{
-				Game::draw_queue.addToQueue(tile[type].getTexture(), tile[type].getRenderRect());
-				first = true;
-			}
-			else
-			{
-				Game::draw_queue.addToQueue(tile[type].getTexture(), tile[type].getRenderRect(), Game::draw_queue.getCurrentLayer());
-			}
+			Game::draw_queue.addToQueue(tile[type].getTexture(), tile[type].getRenderRect(), layer);
 			//tile[type].render();
 
 		}

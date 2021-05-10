@@ -12,6 +12,7 @@ BaseObject::BaseObject()
 	map_x_pos = 0;
 	map_y_pos = 0;
 	colision_box = { 0,0,0,0 };
+	have_shadow = false;
 	visible = true;
 }
 
@@ -25,6 +26,14 @@ BaseObject::~BaseObject()
 	map_y_pos = 0;
 	colision_box = { 0,0,0,0 };
 	visible = false;
+}
+
+void BaseObject::loadShadow(std::string path, int x, int y)
+{
+	have_shadow = true;
+	shadow.loadTexture(path);
+	shadow_x = x;
+	shadow_y = y;
 }
 
 void BaseObject::loadAnimationFromFile(std::string path)
@@ -49,7 +58,7 @@ void BaseObject::setColisionBox(const int x, const int y, const int w, const int
 	colision_box.h = h;
 }
 
-void BaseObject::render()
+void BaseObject::render(int layer)
 {
 	if (!visible) return;
 	Camera map_camera = GameMap::getMapCamera();
@@ -68,7 +77,7 @@ void BaseObject::render()
 	SDL_Rect clip = animation.getCurrentRect();
 
 	//	Thêm vào hàng đợi render
-	Game::draw_queue.addToQueue(image.getTexture(), image.getRenderRect(), 3, clip);
+	Game::draw_queue.addToQueue(image.getTexture(), image.getRenderRect(), layer, clip);
 	//image.render(&clip);
 }
 
