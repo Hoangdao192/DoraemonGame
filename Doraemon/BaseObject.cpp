@@ -32,8 +32,9 @@ void BaseObject::loadShadow(std::string path, int x, int y)
 {
 	have_shadow = true;
 	shadow.loadTexture(path);
+	SDL_SetTextureAlphaMod(shadow.getTexture(), 50);
 	shadow_x = x;
-	shadow_y = y;
+	shadow_y = y-1;
 }
 
 void BaseObject::loadAnimationFromFile(std::string path)
@@ -58,6 +59,14 @@ void BaseObject::setColisionBox(const int x, const int y, const int w, const int
 	colision_box.h = h;
 }
 
+void BaseObject::setColisionBox(const SDL_Rect colision_box_rect)
+{
+	colision_box.x = colision_box_rect.x;
+	colision_box.y = colision_box_rect.y;
+	colision_box.w = colision_box_rect.w;
+	colision_box.h = colision_box_rect.h;
+}
+
 void BaseObject::render(int layer)
 {
 	if (!visible) return;
@@ -77,7 +86,13 @@ void BaseObject::render(int layer)
 	SDL_Rect clip = animation.getCurrentRect();
 
 	//	Thêm vào hàng đợi render
+	
 	Game::draw_queue.addToQueue(image.getTexture(), image.getRenderRect(), layer, clip);
+	if (have_shadow)
+	{
+		shadow.setRenderRect(image.getRenderRect().x + shadow_x, image.getRenderRect().y + shadow_y);
+		Game::draw_queue.addToQueue(shadow.getTexture(), shadow.getRenderRect(), layer);
+	}
 	//image.render(&clip);
 }
 

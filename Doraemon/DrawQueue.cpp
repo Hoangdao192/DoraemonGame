@@ -48,7 +48,7 @@ void DrawQueue::addToQueue(SDL_Texture* texture_pointer, SDL_Rect rect_, const i
 		//	Thêm vào giữa layer
 		for (int i = 0; i < queue[layer].size()-1; ++i)
 		{
-			if (queue[layer][i].pos <= new_node.pos <= queue[layer][i + 1].pos)
+			if (queue[layer][i].pos <= new_node.pos && new_node.pos <= queue[layer][i + 1].pos)
 			{
 				queue[layer].insert(queue[layer].begin() + i + 1, new_node);
 				return;

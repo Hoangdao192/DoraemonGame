@@ -16,6 +16,7 @@ class BaseObject
 		void setAnimation(const int frame_row, const int frame_col, const int frame_width, const int frame_height);
 
 		void setColisionBox(const int x, const int y, const int w, const int h);
+		void setColisionBox(const SDL_Rect colision_box_rect);
 		SDL_Rect getColisionBox() { return colision_box; }
 		bool checkObjectColision(BaseObject& other_object);
 
