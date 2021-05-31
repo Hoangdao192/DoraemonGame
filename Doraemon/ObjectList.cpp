@@ -38,3 +38,11 @@ void ObjectList::clearList()
 {
 	object_list.resize(0);
 }
+
+void ObjectList::renderAllObject()
+{
+	for (BaseObject* p_obj : object_list)
+	{
+		p_obj->render(3);
+	}
+}

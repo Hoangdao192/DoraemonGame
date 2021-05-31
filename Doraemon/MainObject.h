@@ -4,6 +4,7 @@
 #include "FrameSheet.h"
 #include "GameMap.h"
 #include "BaseObject.h"
+#include "ObjectList.h"
 
 const int PLAYER_SPEED = 6;
 const int MAIN_FRAME_HEIGHT = 57;
@@ -26,13 +27,13 @@ class MainObject : public BaseObject
 		~MainObject();
 		void loadAnimation();
 
-		bool checkColision(GameMap& map_data);
-		bool checkObjectListColision();
+		bool checkColision(GameMap& map_data, ObjectList& obj_list);
+		bool checkObjectListColision(ObjectList &object_list);
 		bool checkMapColision(GameMap& map_data);
 		bool checkTileColision(Tile &tile);
 
-		void move(GameMap& map_data);
-		void doThing(GameMap& map_data);
+		void move(GameMap& map_data, ObjectList& obj_list);
+		void doThing(GameMap& map_data, ObjectList &obj_list);
 		void handleInputAction(SDL_Event &window_event);
 
 		void checkAnimation();

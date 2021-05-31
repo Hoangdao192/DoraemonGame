@@ -12,7 +12,7 @@ class ImageObject
 		ImageObject(std::string path);
 		~ImageObject();
 
-		void loadTexture(std::string path);
+		bool loadTexture(std::string path);
 		void destroyTexture();
 		SDL_Texture* getTexture() { return p_texture; }
 

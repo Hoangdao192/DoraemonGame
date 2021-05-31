@@ -33,18 +33,26 @@ BaseObject::~BaseObject()
 	visible = false;
 }
 
-void BaseObject::loadShadow(std::string path, int x, int y)
+bool BaseObject::loadShadow(std::string path, int x, int y)
 {
-	have_shadow = true;
-	shadow.loadTexture(path);
-	SDL_SetTextureAlphaMod(shadow.getTexture(), 50);
-	shadow_x = x;
-	shadow_y = y-1;
+	////////////////////////////////////////////////////////////////////////
+	//	Hàm load bóng của object với x và y là tọa độ so với ảnh của object
+	//	Mặc định x = 0, y = 0
+	////////////////////////////////////////////////////////////////////////
+	if(shadow.loadTexture(path));
+	{
+		SDL_SetTextureAlphaMod(shadow.getTexture(), 50);
+		have_shadow = true;
+		shadow_x = x;
+		shadow_y = y - 1;
+		return true;
+	}
+	return false;
 }
 
-void BaseObject::loadAnimationFromFile(std::string path)
+bool BaseObject::loadAnimationFromFile(std::string path)
 {
-	image.loadTexture(path);
+	return image.loadTexture(path);
 }
 
 void BaseObject::setAnimation(const int frame_row, const int frame_col, const int frame_width, const int frame_height)
@@ -98,7 +106,6 @@ void BaseObject::render(int layer)
 		shadow.setRenderRect(image.getRenderRect().x + shadow_x, image.getRenderRect().y + shadow_y);
 		Game::draw_queue.addToQueue(shadow.getTexture(), shadow.getRenderRect(), layer);
 	}
-	//image.render(&clip);
 }
 
 bool BaseObject::checkObjectColision(BaseObject& other_object)
@@ -146,7 +153,9 @@ bool BaseObject::checkObjectColision(BaseObject& other_object)
 
 void BaseObject::setPosition(int x, int y) 
 { 
-	//	Đặt tọa độ của đối tượng trên map
+	///////////////////////////////////
+	//	Đặt tọa độ của object trên map
+	///////////////////////////////////
 	map_x_pos = x; 
 	map_y_pos = y; 
 }

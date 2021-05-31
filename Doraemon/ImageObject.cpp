@@ -25,12 +25,12 @@ ImageObject::ImageObject(std::string path)
 	loadTexture(path);
 }
 
-void ImageObject::loadTexture(std::string path)
+bool ImageObject::loadTexture(std::string path)
 {
 	if (path == "none")
 	{
 		std::cout << "Nothing to load";
-		return;
+		return false;
 	}
 
 	SDL_Surface* temp_surface = NULL;
@@ -38,6 +38,7 @@ void ImageObject::loadTexture(std::string path)
 	if (temp_surface == NULL)
 	{
 		std::cout << "\nError: cannot load file " << path;
+		return false;
 	}
 	else
 	{
@@ -49,6 +50,7 @@ void ImageObject::loadTexture(std::string path)
 	if (p_texture == NULL)
 	{
 		std::cout << "\nError: cannot create texture from surface " << path;
+		return false;
 	}
 	else
 	{
@@ -63,6 +65,7 @@ void ImageObject::loadTexture(std::string path)
 	render_rect.h = temp_surface->h;
 
 	SDL_FreeSurface(temp_surface);
+	return true;
 }
 
 void ImageObject::destroyTexture()

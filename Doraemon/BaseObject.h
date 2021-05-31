@@ -20,8 +20,8 @@ class BaseObject
 		bool getVisible() { return visible; }
 
 		//x và y là tọa độ so với ảnh nhân vật
-		void loadShadow(std::string path, int x = 0, int y = 0);
-		void loadAnimationFromFile(std::string path);
+		bool loadShadow(std::string path, int x = 0, int y = 0);
+		bool loadAnimationFromFile(std::string path);
 		void setAnimation(const int frame_row, const int frame_col, const int frame_width, const int frame_height);
 
 		void setColisionBox(const int x, const int y, const int w, const int h);

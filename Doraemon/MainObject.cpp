@@ -111,7 +111,7 @@ void MainObject::handleInputAction(SDL_Event& window_event)
 	}
 }
 
-void MainObject::move(GameMap &map_data)
+void MainObject::move(GameMap &map_data, ObjectList& obj_list)
 {
 	// Tính toán vị trí của nhân vật sau khi bấm các phím di chuyển
 	
@@ -136,7 +136,7 @@ void MainObject::move(GameMap &map_data)
 	}
 
 	//	Nếu nhân vật va phải các chướng ngại vật trên bản đồ thì không thể đi tiếp
-	if (checkColision(map_data))
+	if (checkColision(map_data, obj_list))
 	{
 		//main_speed = 1;
 		return;
@@ -169,14 +169,14 @@ void MainObject::move(GameMap &map_data)
 	else map_y_pos += y_val;
 }
 
-void MainObject::doThing(GameMap& map_data)
+void MainObject::doThing(GameMap& map_data, ObjectList &obj_list)
 {
 	/// <summary>
 	/// Xử lý nhân vật sau mỗi vòng lặp
 	/// </summary>
 	/// <param name="map_data"></param>
 	// Di chuyển
-	move(map_data);
+	move(map_data, obj_list);
 	//	Đặt frame
 	checkAnimation();
 	//	Di chuyển bản đồ
@@ -184,7 +184,7 @@ void MainObject::doThing(GameMap& map_data)
 		|| movement.left && x_pos < Window::getWindowWidth() / 2)
 	{
 		//	Nếu xảy ra va chạm thì bản đồ không di chuyển
-		if (checkColision(map_data))
+		if (checkColision(map_data, obj_list))
 		{
 			return;
 		}
@@ -197,7 +197,7 @@ void MainObject::doThing(GameMap& map_data)
 		|| movement.up && y_pos < Window::getWindowHeight() / 2)
 	{
 		//	Nếu xảy ra va chạm thì bản đồ không di chuyển
-		if (checkColision(map_data))
+		if (checkColision(map_data, obj_list))
 		{
 			return;
 		}
@@ -240,10 +240,10 @@ void MainObject::checkAnimation()
 	}
 }
 
-bool MainObject::checkColision(GameMap &map_data)
+bool MainObject::checkColision(GameMap &map_data, ObjectList& obj_list)
 {
 	if (checkMapColision(map_data)) return true;
-	if (checkObjectListColision()) return true;
+	if (checkObjectListColision(obj_list)) return true;
 
 	return false;
 }
@@ -343,11 +343,11 @@ bool MainObject::checkTileColision(Tile &tile)
 	return false;
 }
 
-bool MainObject::checkObjectListColision()
+bool MainObject::checkObjectListColision(ObjectList &object_list)
 {
-	for (int i = 0; i < Game::object_list.object_list.size(); ++i)
+	for (int i = 0; i < object_list.object_list.size(); ++i)
 	{
-		if (checkObjectColision(*Game::object_list.object_list[i])) return true;
+		if (checkObjectColision(*object_list.object_list[i])) return true;
 	}
 	return false;
 }

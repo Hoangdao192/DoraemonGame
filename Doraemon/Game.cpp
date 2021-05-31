@@ -2,12 +2,16 @@
 #include "ObjectType.h"
 
 DrawQueue Game::draw_queue;
-ObjectList Game::object_list;
 
 Game::Game()
 {
     running = true;
-	game_start_time = SDL_GetTicks();
+    fps = 0;
+    fps_time_delay = 0;
+    fps_start_time = 0;
+    fps_current_time = 0;
+    game_start_time = 0;
+    game_current_time = 0;
     object_list.clearList();
 }
 
@@ -32,8 +36,11 @@ void Game::doThing()
 
 void Game::draw()
 {
+    //  Render
 	draw_queue.render();
+    //  Show
 	Window::display();
+    //  Delay fro FPS
 	fps_current_time = SDL_GetTicks();
 	if (fps_current_time - fps_start_time <= fps_time_delay)
 	{
@@ -114,7 +121,7 @@ void mainGame()
 
         }
 
-        player.doThing(map2);
+        player.doThing(map2, game.object_list);
         map1.cameraMove(0, 0);
         map1s.cameraMove(0, 0);
 
@@ -123,6 +130,7 @@ void mainGame()
         map2.render(2);
 
         player.render(3);
+        
         rock.render(3);
         rock2.render(3);
         rock3.render(3);

@@ -46,8 +46,6 @@ BaseObject createObject(Object_type type, int x, int y, bool visible)
 {
 	ObjectTypeSet obj_set = ObjectType::getObjectTypeSet(type);
 
-	std::cout << std::endl << obj_set.animation.frame_col << " " << obj_set.animation.frame_height << " " << obj_set.animation.frame_width << " " << obj_set.animation.frame_height <<  "\n";
-
 	BaseObject *new_obj = new BaseObject;
 	new_obj->loadAnimationFromFile(obj_set.animation_path);
 	new_obj->loadShadow(obj_set.shadow_path);

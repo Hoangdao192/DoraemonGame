@@ -15,7 +15,7 @@ class Game
 		Game();
 		~Game();
 
-		void setFPS(const int fps_) { fps = fps_; fps_time_delay = 1000 / fps; }
+		void setFPS(const int fps) { this->fps = fps; fps_time_delay = 1000 / fps; }
 		int getFPS() const { return fps; }
 
 		void update();
@@ -27,7 +27,7 @@ class Game
 		bool isRunning() const { return running; }
 
 		static DrawQueue draw_queue;
-		static ObjectList object_list;
+		ObjectList object_list;
 
 		SDL_Event window_event;
 	private:
