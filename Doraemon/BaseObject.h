@@ -4,11 +4,20 @@
 #include "FrameSheet.h"
 #include "GameMap.h"
 
+
 class BaseObject
 {
 	public:
 		BaseObject();
+		// Tạo một object mới với mẫu có sẵn
+		BaseObject(Object_type type_, int x = 0, int y = 0);
 		~BaseObject();
+
+		void setObjectType(Object_type type) { this->type = type; }
+		Object_type getObjectType() { return type; }
+
+		void setVisible(bool is_visible) { visible = is_visible; }
+		bool getVisible() { return visible; }
 
 		//x và y là tọa độ so với ảnh nhân vật
 		void loadShadow(std::string path, int x = 0, int y = 0);
@@ -30,6 +39,9 @@ class BaseObject
 		void destroyObject() { visible = false; }
 		
 	protected:
+
+		Object_type type;
+
 		ImageObject image;
 		bool have_shadow;
 		ImageObject shadow;

@@ -16,6 +16,11 @@ BaseObject::BaseObject()
 	visible = true;
 }
 
+BaseObject::BaseObject(Object_type type_, int x, int y)
+{
+
+}
+
 BaseObject::~BaseObject()
 {
 	x_pos = 0;

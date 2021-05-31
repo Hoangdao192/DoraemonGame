@@ -27,6 +27,12 @@ ImageObject::ImageObject(std::string path)
 
 void ImageObject::loadTexture(std::string path)
 {
+	if (path == "none")
+	{
+		std::cout << "Nothing to load";
+		return;
+	}
+
 	SDL_Surface* temp_surface = NULL;
 	temp_surface = IMG_Load(path.c_str());
 	if (temp_surface == NULL)
@@ -64,6 +70,7 @@ void ImageObject::destroyTexture()
 	if (p_texture != NULL)
 	{
 		SDL_DestroyTexture(p_texture);
+		std::cout << "\nTexture destroyed";
 	}
 	p_texture = NULL;
 }

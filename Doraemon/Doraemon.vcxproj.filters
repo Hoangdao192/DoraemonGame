@@ -48,6 +48,9 @@
     <ClInclude Include="ObjectList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
