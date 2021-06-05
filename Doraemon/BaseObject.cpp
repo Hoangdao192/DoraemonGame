@@ -1,5 +1,6 @@
 ﻿#include "BaseObject.h"
 #include "Game.h"
+#include "ObjectType.h"
 
 BaseObject::BaseObject()
 {
@@ -16,9 +17,23 @@ BaseObject::BaseObject()
 	visible = true;
 }
 
-BaseObject::BaseObject(Object_type type_, int x, int y)
+BaseObject::BaseObject(Object_type type_, int x, int y, bool visible)
 {
+	if (type_ < 1 || type_ > MAX_OBJECT_TYPE)
+	{
+		writeLog("No object type");
+		return;
+	}
 
+	setObjectType(type_);
+	ObjectTypeSet obj_set = ObjectType::getObjectTypeSet(type);
+
+	loadAnimationFromFile(obj_set.animation_path);
+	loadShadow(obj_set.shadow_path);
+	setPosition(x, y);
+	setColisionBox(obj_set.colision_box);
+	setAnimation(obj_set.animation.frame_row, obj_set.animation.frame_col, obj_set.animation.frame_width, obj_set.animation.frame_height);
+	setVisible(visible);
 }
 
 BaseObject::~BaseObject()
@@ -41,7 +56,7 @@ bool BaseObject::loadShadow(std::string path, int x, int y)
 	////////////////////////////////////////////////////////////////////////
 	if(shadow.loadTexture(path));
 	{
-		SDL_SetTextureAlphaMod(shadow.getTexture(), 50);
+		SDL_SetTextureAlphaMod(shadow.getTexture(), SHADOW_ALPHA);
 		have_shadow = true;
 		shadow_x = x;
 		shadow_y = y - 1;
@@ -85,7 +100,7 @@ void BaseObject::render(int layer)
 	if (!visible) return;
 	Camera map_camera = GameMap::getMapCamera();
 
-	//	Kiểm tra xem đối tượng có nằm trong vùng màn hình hiển thị không
+	// Nếu object không nằm trong vùng của camera thì không render
 	if (map_x_pos < map_camera.start_x && map_x_pos + width < map_camera.start_x ||
 		map_x_pos > map_camera.end_x && map_x_pos + width > map_camera.end_x ||
 		map_y_pos < map_camera.start_y && map_y_pos + height < map_camera.start_y ||
@@ -99,7 +114,6 @@ void BaseObject::render(int layer)
 	SDL_Rect clip = animation.getCurrentRect();
 
 	//	Thêm vào hàng đợi render
-	
 	Game::draw_queue.addToQueue(image.getTexture(), image.getRenderRect(), layer, clip);
 	if (have_shadow)
 	{

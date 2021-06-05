@@ -10,7 +10,7 @@ class BaseObject
 	public:
 		BaseObject();
 		// Tạo một object mới với mẫu có sẵn
-		BaseObject(Object_type type_, int x = 0, int y = 0);
+		BaseObject(Object_type type_, int x = 0, int y = 0, bool visible = true);
 		~BaseObject();
 
 		void setObjectType(Object_type type) { this->type = type; }

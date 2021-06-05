@@ -47,4 +47,27 @@ enum Object_type
 	CHEST_1 = 21
 };
 
-void writeLog(std::string log);
+struct Animation_info
+{
+	int frame_col;
+	int frame_row;
+	int frame_width;
+	int frame_height;
+};
+
+struct ObjectTypeSet
+{
+	std::string type_name;
+	std::string animation_path;
+	std::string shadow_path;
+	Animation_info animation;
+	SDL_Rect colision_box;
+};
+
+const int MAX_OBJECT_TYPE = 20;
+
+const int SHADOW_ALPHA = 50;
+
+void writeLog(std::string log, int log_key = 0);
+
+void writeLog(std::stringstream &ss, int log_key = 0);

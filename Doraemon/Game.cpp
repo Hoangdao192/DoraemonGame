@@ -12,7 +12,7 @@ Game::Game()
     fps_current_time = 0;
     game_start_time = 0;
     game_current_time = 0;
-    object_list.clearList();
+    object_list.clear();
 }
 
 Game::~Game()
@@ -67,47 +67,47 @@ void mainGame()
 
     MainObject player;
 
-    BaseObject rock = createObject(ROCK_COLUMN_3, 70, 88);
-    BaseObject rock2 = createObject(ROCK_COLUMN_2, 198, -4);
-    BaseObject rock3 = createObject(ROCK_COLUMN_1, 198, 245);
-    BaseObject chest1 = createObject(CHEST_1, 544, 109);
-    BaseObject rock_benches = createObject(BENCHE_LEFT, 842, -12);
-    BaseObject rock_column1 = createObject(ROCK_COLUMN_4, 1060, 62);
-    BaseObject rock_column2 = createObject(ROCK_COLUMN_4, 1060, 326);
-    BaseObject rock_column3 = createObject(ROCK_COLUMN_4, 521, 326);
-    BaseObject rock_well = createObject(BREAK_WELL, -23, 286);
-    BaseObject break_rock_col = createObject(ROCK_COLUMN_5, 717, 366);
-    BaseObject rock_bench = createObject(BENCHE_FRONT, 264, 587);
-    BaseObject rock_bench1 = createObject(BENCHE_FRONT, 456, 587);
-    BaseObject flag = createObject(SIGN_LEFT, 405, 699);
-    BaseObject rip = createObject(RIP_1, 774, 794);
-    BaseObject rip1 = createObject(RIP_2, 834, 742);
-    BaseObject rip2 = createObject(RIP_3, 962, 824);
-    BaseObject tomb = createObject(TOMB_VERTICAL, 1184, 480);
-    BaseObject lamp = createObject(ROCK_LAMP, 1215, 688);
-    BaseObject jar = createObject(JAR_1, 982, 537);
-    BaseObject jar2 = createObject(JAR_2, 1056, 608);
+    BaseObject rock(ROCK_COLUMN_3, 70, 88);
+    BaseObject rock2(ROCK_COLUMN_2, 198, -4);
+    BaseObject rock3(ROCK_COLUMN_1, 198, 245);
+    BaseObject chest1(CHEST_1, 544, 109);
+    BaseObject rock_benches(BENCHE_LEFT, 842, -12);
+    BaseObject rock_column1(ROCK_COLUMN_4, 1060, 62);
+    BaseObject rock_column2(ROCK_COLUMN_4, 1060, 326);
+    BaseObject rock_column3(ROCK_COLUMN_4, 521, 326);
+    BaseObject rock_well(BREAK_WELL, -23, 286);
+    BaseObject break_rock_col(ROCK_COLUMN_5, 717, 366);
+    BaseObject rock_bench(BENCHE_FRONT, 264, 587);
+    BaseObject rock_bench1(BENCHE_FRONT, 456, 587);
+    BaseObject flag(SIGN_LEFT, 405, 699);
+    BaseObject rip(RIP_1, 774, 794);
+    BaseObject rip1(RIP_2, 834, 742);
+    BaseObject rip2(RIP_3, 962, 824);
+    BaseObject tomb(TOMB_VERTICAL, 1184, 480);
+    BaseObject lamp(ROCK_LAMP, 1215, 688);
+    BaseObject jar(JAR_1, 982, 537);
+    BaseObject jar2(JAR_2, 1056, 608);
 
-    game.object_list.addObject(&rock);
-    game.object_list.addObject(&rock2);
-    game.object_list.addObject(&rock3);
-    game.object_list.addObject(&chest1);
-    game.object_list.addObject(&rock_benches);
-    game.object_list.addObject(&rock_column1);
-    game.object_list.addObject(&rock_column2);
-    game.object_list.addObject(&rock_column3);
-    game.object_list.addObject(&break_rock_col);
-    game.object_list.addObject(&rock_well);
-    game.object_list.addObject(&rock_bench);
-    game.object_list.addObject(&rock_bench1);
-    game.object_list.addObject(&flag);
-    game.object_list.addObject(&rip);
-    game.object_list.addObject(&rip1);
-    game.object_list.addObject(&rip2);
-    game.object_list.addObject(&tomb);
-    game.object_list.addObject(&lamp);
-    game.object_list.addObject(&jar);
-    game.object_list.addObject(&jar2);
+    game.object_list.push_back(&rock);
+    game.object_list.push_back(&rock2);
+    game.object_list.push_back(&rock3);
+    game.object_list.push_back(&chest1);
+    game.object_list.push_back(&rock_benches);
+    game.object_list.push_back(&rock_column1);
+    game.object_list.push_back(&rock_column2);
+    game.object_list.push_back(&rock_column3);
+    game.object_list.push_back(&break_rock_col);
+    game.object_list.push_back(&rock_well);
+    game.object_list.push_back(&rock_bench);
+    game.object_list.push_back(&rock_bench1);
+    game.object_list.push_back(&flag);
+    game.object_list.push_back(&rip);
+    game.object_list.push_back(&rip1);
+    game.object_list.push_back(&rip2);
+    game.object_list.push_back(&tomb);
+    game.object_list.push_back(&lamp);
+    game.object_list.push_back(&jar);
+    game.object_list.push_back(&jar2);
 
     while (game.isRunning())
     {

@@ -7,7 +7,7 @@ ObjectList::ObjectList()
 
 ObjectList::~ObjectList()
 {
-	clearList();
+	clear();
 }
 
 void ObjectList::addObject(BaseObject* object_pointer)
@@ -15,28 +15,34 @@ void ObjectList::addObject(BaseObject* object_pointer)
 	object_list.push_back(object_pointer);
 }
 
-void ObjectList::deleteObject(BaseObject* object_pointer)
+bool ObjectList::erase(BaseObject* object_pointer)
 {
-	bool ret = false;
-	for (int i = 0; i < object_list.size(); ++i)
+	std::vector<BaseObject*>::iterator it = std::find(object_list.begin(), object_list.end(), object_pointer);
+
+	if (it == object_list.end())
 	{
-		if (object_pointer == object_list[i])
-		{
-			ret = true;
-			object_list.erase(object_list.begin() + i);
-			std::cout << "\nDelete object successed";
-		}
+		std::stringstream ss;
+		ss << "Cannot find this object " << object_pointer << " (object_list.erase)";
+		writeLog(ss.str());
+		return false;
 	}
 
-	if (!ret)
-	{
-		std::cout << "\nError: cannot find object " << object_pointer;
-	}
+
+	object_list.erase(it);
+	std::stringstream ss;
+	ss << "Delete object succesful " << object_pointer;
+	writeLog(ss.str(), 1);
+	return true;
 }
 
 void ObjectList::clearList()
 {
 	object_list.resize(0);
+}
+
+void ObjectList::clear()
+{
+	object_list.clear();
 }
 
 void ObjectList::renderAllObject()
