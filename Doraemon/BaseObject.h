@@ -3,6 +3,7 @@
 #include "ImageObject.h"
 #include "FrameSheet.h"
 #include "GameMap.h"
+#include "Animation.h"
 
 
 class BaseObject
@@ -42,10 +43,9 @@ class BaseObject
 
 		Object_type type;
 
-		ImageObject image;
 		bool have_shadow;
 		ImageObject shadow;
-		FrameSheet animation;
+		Animation animating;
 
 		bool visible;
 

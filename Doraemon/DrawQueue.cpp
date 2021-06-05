@@ -12,6 +12,10 @@ DrawQueue::~DrawQueue()
 
 void DrawQueue::addToQueue(SDL_Texture* texture_pointer, SDL_Rect rect_, const int layer, SDL_Rect clip_)
 {
+	/////////////////////////////////////
+	//	Thêm một DrawNode mới vào layer
+	/////////////////////////////////////
+
 	DrawNode new_node(texture_pointer, rect_, clip_);
 
 	//	Layer không tồn tại
@@ -96,6 +100,9 @@ void DrawQueue::deleteNode(const int node, const int layer)
 
 void DrawQueue::insertLayer(std::vector<DrawNode> layer, const int position)
 {
+	///////////////////////////////////
+	//	Chèn một layer 
+	///////////////////////////////////
 	if (position < 0)
 	{
 		queue.insert(queue.begin(), layer);
@@ -136,7 +143,9 @@ void DrawQueue::renderLayer(const int layer)
 
 	if (layer >= queue.size())
 	{
-		std::cout << "\nError: layer " << layer << " is not exists";
+		std::stringstream ss;
+		ss << "\nLayer " << layer << " is not exists";
+		writeLog(ss);
 		return;
 	}
 

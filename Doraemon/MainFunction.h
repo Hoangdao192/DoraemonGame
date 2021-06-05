@@ -68,6 +68,8 @@ const int MAX_OBJECT_TYPE = 20;
 
 const int SHADOW_ALPHA = 50;
 
+//	log_key = 0: error, log_key = 1: success
 void writeLog(std::string log, int log_key = 0);
 
+//	log_key = 0: error, log_key = 1: success
 void writeLog(std::stringstream &ss, int log_key = 0);

@@ -2,9 +2,26 @@
 #include "MainFunction.h"
 #include "Window.h"
 
-/// <summary>
-/// Hàng đợi sẽ khởi tạo với 10 layer
-/// </summary>
+/*
+	Hàng đợi render được cài đặt như sau:
+		Hàng đợi gồm 10 layer, mỗi layer sẽ là tập hợp các DrawNode
+		Layer có chỉ số nhỏ hơn được render trước
+		(thứ tự render: 1 -> 2 -> 3 -> 4 ... -> 10)
+
+		Mỗi Layer chứa:
+		-	Chứa thông tin về hình ảnh sẽ in ra và vị trí in ra màn hình của hình ảnh đó
+			(Gọi là một DrawNode)
+		-	Hình ảnh:
+		   x1
+		  y1* * * * * * * *
+			*			  *
+			*			  *
+			* * * * * * * *y2
+						  x2
+		-	Các DrawNode được sắp xếp theo thứ tự từ nhỏ đến lớn theo y2
+			(y2 lớn hơn đứng sau)
+		-	DrawNode nào đứng trước được render trước
+*/
 
 struct DrawNode
 {
@@ -18,6 +35,7 @@ struct DrawNode
 	SDL_Texture* p_texture;
 	SDL_Rect rect;
 	SDL_Rect clip;
+	//	Pos ở đây chính là y2
 	int pos;
 };
 
@@ -33,6 +51,7 @@ class DrawQueue
 		void deleteLayer(const int layer = -1);
 		//	Xóa một đối tượng khỏi một layer
 		void deleteNode(const int node, const int layer);
+
 		//	Chèn một layer vào vị trí đã định
 		//	Nếu position lớn hơn vị trí lớn nhất -> chèn vào cuối
 		//	Nếu position nhỏ hơn vị trí nhỏ nhất -> chèn vào đầu

@@ -31,7 +31,7 @@ class ImageObject
 			render_rect = other.getRenderRect();
 			clip_rect = other.getClipRect();
 		}
-	private:
+	protected:
 		SDL_Texture* p_texture;
 		SDL_Rect src_rect;
 		SDL_Rect render_rect;

@@ -6,7 +6,7 @@ void quitSDL();
 int main(int argc, char* argv[])
 {
     Window window;
-    window.creatWindow("Doraemon", 300, 300);
+    window.creatWindow("Doraemon", 1280, 720);
     loadAcces();
     mainGame();
 
