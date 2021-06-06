@@ -67,13 +67,13 @@ bool BaseObject::loadShadow(std::string path, int x, int y)
 
 bool BaseObject::loadAnimationFromFile(std::string path)
 {
-	return animating.loadTexture(path);
+	return animation.loadTexture(path);
 }
 
 void BaseObject::setAnimation(const int frame_row, const int frame_col, const int frame_width, const int frame_height)
 {
-	animating.setFrameSheet(frame_col, frame_row);
-	animating.setFrameSize(frame_width, frame_height);
+	animation.setFrameSheet(frame_col, frame_row);
+	animation.setFrameSize(frame_width, frame_height);
 
 	width = frame_width;
 	height = frame_height;
@@ -109,17 +109,17 @@ void BaseObject::render(int layer)
 		return;
 	}
 
-	animating.frameIncrease();
+	animation.frameIncrease();
 	
-	animating.setRenderRect(map_x_pos - map_camera.start_x, map_y_pos - map_camera.start_y);
+	animation.setRenderRect(map_x_pos - map_camera.start_x, map_y_pos - map_camera.start_y);
 	
-	SDL_Rect clip = animating.getCurrentRect();
+	SDL_Rect clip = animation.getCurrentRect();
 
 	//	Thêm vào hàng đợi render
-	Game::draw_queue.addToQueue(animating.getTexture(), animating.getRenderRect(), layer, clip);
+	Game::draw_queue.addToQueue(animation.getTexture(), animation.getRenderRect(), layer, clip);
 	if (have_shadow)
 	{
-		shadow.setRenderRect(animating.getRenderRect().x + shadow_x, animating.getRenderRect().y + shadow_y);
+		shadow.setRenderRect(animation.getRenderRect().x + shadow_x, animation.getRenderRect().y + shadow_y);
 		Game::draw_queue.addToQueue(shadow.getTexture(), shadow.getRenderRect(), layer);
 	}
 }

@@ -45,10 +45,17 @@ class MainObject : public BaseObject
 
 		ImageObject* main_img;
 		FrameSheet* main_animation;
+		Animation* main_ani;
 
 		int main_speed;
 
 		MoveType movement;
+
+		Animation walkdown;
+		Animation walkup;
+		Animation stand;
+		Animation walkright;
+		Animation walkleft;
 
 		ImageObject walkdown_img;
 		ImageObject walkup_img;

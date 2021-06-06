@@ -40,25 +40,25 @@ MainObject::~MainObject()
 
 void MainObject::loadAnimation()
 {
-	walkdown_animation.setFrameSheet(1, 18);
-	walkdown_animation.setFrameSize(39, 57);
-	walkdown_img.loadTexture("acces/walk_down.png");
+	walkdown.setFrameSheet(1, 18);
+	walkdown.setFrameSize(39, 57);
+	walkdown.loadTexture("acces/walk_down.png");
 
-	walkup_animation.setFrameSheet(1, 18);
-	walkup_animation.setFrameSize(39, 57);
-	walkup_img.loadTexture("acces/walk_up.png");
+	walkup.setFrameSheet(1, 18);
+	walkup.setFrameSize(39, 57);
+	walkup.loadTexture("acces/walk_up.png");
 
-	stand_animation.setFrameSheet(1, 18);
-	stand_animation.setFrameSize(39, 57);
-	stand_img.loadTexture("acces/stand.png");
+	stand.setFrameSheet(1, 18);
+	stand.setFrameSize(39, 57);
+	stand.loadTexture("acces/stand.png");
 
-	walkright_animation.setFrameSheet(1, 18);
-	walkright_animation.setFrameSize(39, 57);
-	walkright_img.loadTexture("acces/walk_right.png");
+	walkright.setFrameSheet(1, 18);
+	walkright.setFrameSize(39, 57);
+	walkright.loadTexture("acces/walk_right.png");
 
-	walkleft_animation.setFrameSheet(1, 18);
-	walkleft_animation.setFrameSize(39, 57);
-	walkleft_img.loadTexture("acces/walk_left.png");
+	walkleft.setFrameSheet(1, 18);
+	walkleft.setFrameSize(39, 57);
+	walkleft.loadTexture("acces/walk_left.png");
 }
 
 void MainObject::handleInputAction(SDL_Event& window_event)
@@ -215,28 +215,27 @@ void MainObject::checkAnimation()
 	// Đặt animation phù hợp với các hoạt động của nhân vật
 	if (movement.down)
 	{
-		main_animation = &walkdown_animation;
-		main_img = &walkdown_img;
+		main_ani = &walkdown;
 	}
 	else if (movement.up)
 	{
-		main_animation = &walkup_animation;
+		main_animation = &walkup;
 		main_img = &walkup_img;
 	}
 	else if (movement.right)
 	{
-		main_animation = &walkright_animation;
+		main_animation = &walkright;
 		main_img = &walkright_img;
 	}
 	else if (movement.left)
 	{
-		main_animation = &walkleft_animation;
+		main_animation = &walkleft;
 		main_img = &walkleft_img;
 	}
 	else
 	{
-		main_animation = &stand_animation;
-		main_img = &stand_img;
+		main_animation = &stand;
+		main_img = &stand.getTexture();
 	}
 }
 

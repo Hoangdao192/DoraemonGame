@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "MainFunction.h"
 #include "ImageObject.h"
-#include "FrameSheet.h"
 #include "GameMap.h"
 #include "Animation.h"
 
@@ -45,7 +44,7 @@ class BaseObject
 
 		bool have_shadow;
 		ImageObject shadow;
-		Animation animating;
+		Animation animation;
 
 		bool visible;
 
