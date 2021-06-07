@@ -43,7 +43,7 @@ class BaseObject
 		Object_type type;
 
 		bool have_shadow;
-		ImageObject shadow;
+		Animation shadow;
 		Animation animation;
 
 		bool visible;
@@ -61,7 +61,9 @@ class BaseObject
 		int speed;
 		int map_x_pos;
 		int map_y_pos;
+
 		int width;
 		int height;
+		int weight;
 };
 

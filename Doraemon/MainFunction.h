@@ -47,6 +47,8 @@ enum Object_type
 	CHEST_1 = 21
 };
 
+const int MAX_OBJECT_TYPE = 21;
+
 struct Animation_info
 {
 	int frame_col;
@@ -63,8 +65,6 @@ struct ObjectTypeSet
 	Animation_info animation;
 	SDL_Rect colision_box;
 };
-
-const int MAX_OBJECT_TYPE = 20;
 
 const int SHADOW_ALPHA = 50;
 

@@ -73,7 +73,6 @@ void ImageObject::destroyTexture()
 	if (p_texture != NULL)
 	{
 		SDL_DestroyTexture(p_texture);
-		std::cout << "\nTexture destroyed";
 	}
 	p_texture = NULL;
 }

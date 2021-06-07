@@ -28,7 +28,7 @@ MainObject::MainObject()
 
 	setColisionBox(0, 54, 39, 3);
 	loadAnimation();
-	main_animation = &stand_animation;
+	main_ani = &stand;
 
 	main_speed = PLAYER_SPEED;
 }
@@ -153,17 +153,17 @@ void MainObject::move(GameMap &map_data, ObjectList& obj_list)
 	
 	
 	if (x_pos < 0) x_pos = 0;
-	else if (x_pos + main_animation->getFrameWidth() > Window::getWindowWidth())
+	else if (x_pos + main_ani->getFrameWidth() > Window::getWindowWidth())
 	{
-		x_pos = Window::getWindowWidth() - main_animation->getFrameWidth();
+		x_pos = Window::getWindowWidth() - main_ani->getFrameWidth();
 	}
 	//	Nếu nhân vật di chuyển thành công thì tính tọa độ map của nhân vật
 	else map_x_pos += x_val;
 
 	if (y_pos < 0) y_pos = 0;
-	else if (y_pos + main_animation->getFrameHeight() > Window::getWindowHeight())
+	else if (y_pos + main_ani->getFrameHeight() > Window::getWindowHeight())
 	{
-		y_pos = Window::getWindowHeight() - main_animation->getFrameHeight();
+		y_pos = Window::getWindowHeight() - main_ani->getFrameHeight();
 	}
 	//	Nếu nhân vật di chuyển thành công thì tính tọa độ map của nhân vật
 	else map_y_pos += y_val;
@@ -219,23 +219,19 @@ void MainObject::checkAnimation()
 	}
 	else if (movement.up)
 	{
-		main_animation = &walkup;
-		main_img = &walkup_img;
+		main_ani = &walkup;
 	}
 	else if (movement.right)
 	{
-		main_animation = &walkright;
-		main_img = &walkright_img;
+		main_ani = &walkright;
 	}
 	else if (movement.left)
 	{
-		main_animation = &walkleft;
-		main_img = &walkleft_img;
+		main_ani = &walkleft;
 	}
 	else
 	{
-		main_animation = &stand;
-		main_img = &stand.getTexture();
+		main_ani = &stand;
 	}
 }
 
@@ -274,14 +270,14 @@ bool MainObject::checkMapColision(GameMap& map_data)
 	//	Va chạm phía trái dưới
 	//	Check left down
 	tile_col = x / TILE_SIZE;
-	y_width = y + main_animation->getFrameHeight();
+	y_width = y + main_ani->getFrameHeight();
 	tile_row = y_width / TILE_SIZE;
 	current_tile = map_data.getTile(tile_col, tile_row);
 	if (checkTileColision(current_tile)) return true;
 
 	//	Va chạm phải trên
 	//	Check right up
-	x_width = x + main_animation->getFrameWidth();
+	x_width = x + main_ani->getFrameWidth();
 	tile_col = x_width / TILE_SIZE;
 	tile_row = y / TILE_SIZE;
 	current_tile = map_data.getTile(tile_col, tile_row);
@@ -289,8 +285,8 @@ bool MainObject::checkMapColision(GameMap& map_data)
 
 	//	Va chạm phải dưới
 	//	Check right down
-	x_width = x + main_animation->getFrameWidth();
-	y_width = y + main_animation->getFrameHeight();
+	x_width = x + main_ani->getFrameWidth();
+	y_width = y + main_ani->getFrameHeight();
 	tile_col = x_width / TILE_SIZE;
 	tile_row = y_width / TILE_SIZE;
 	current_tile = map_data.getTile(tile_col, tile_row);
@@ -353,21 +349,10 @@ bool MainObject::checkObjectListColision(ObjectList &object_list)
 
 void MainObject::render(int layer)
 {
-	SDL_Rect render_clip = main_animation->getCurrentRect();
-	main_img->setRenderRect(x_pos, y_pos, MAIN_FRAME_WIDTH, MAIN_FRAME_HEIGHT);
+	SDL_Rect render_clip = main_ani->getCurrentRect();
+	main_ani->setRenderRect(x_pos, y_pos, MAIN_FRAME_WIDTH, MAIN_FRAME_HEIGHT);
 
-	Game::draw_queue.addToQueue(main_img->getTexture(), main_img->getRenderRect(), layer, render_clip);
+	Game::draw_queue.addToQueue(main_ani->getTexture(), main_ani->getRenderRect(), layer, render_clip);
 
-	//main_img->render(&render_clip);
-	/*
-	SDL_Rect des = { x_pos + colision_box.x, y_pos + colision_box.y, colision_box.w, colision_box.h };
-	SDL_SetRenderDrawColor(Window::renderer, 255, 255, 255, 0);
-	SDL_RenderDrawRect(Window::renderer, &des);
-	des = { x_pos, y_pos, 39,57 };
-	SDL_RenderDrawRect(Window::renderer, &des);*/
-
-
-
-	main_animation->frameIncrease();
-
+	main_ani->frameIncrease();
 }

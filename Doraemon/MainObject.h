@@ -1,7 +1,6 @@
 #pragma once
 #include "MainFunction.h"
 #include "ImageObject.h"
-#include "FrameSheet.h"
 #include "GameMap.h"
 #include "BaseObject.h"
 #include "ObjectList.h"
@@ -43,8 +42,6 @@ class MainObject : public BaseObject
 
 	private:
 
-		ImageObject* main_img;
-		FrameSheet* main_animation;
 		Animation* main_ani;
 
 		int main_speed;
@@ -55,19 +52,6 @@ class MainObject : public BaseObject
 		Animation walkup;
 		Animation stand;
 		Animation walkright;
-		Animation walkleft;
-
-		ImageObject walkdown_img;
-		ImageObject walkup_img;
-		ImageObject stand_img;
-		ImageObject walkright_img;
-		ImageObject walkleft_img;
-
-		FrameSheet walkleft_animation;
-		FrameSheet walkup_animation;
-		FrameSheet walkdown_animation;
-		FrameSheet walkright_animation;
-		FrameSheet stand_animation;
-		
+		Animation walkleft;		
 };
 
